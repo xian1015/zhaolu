@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   mounted() {
-    this.$router.push("./homepage");
+    this.$router.push("./index");
   }
 }
 </script>

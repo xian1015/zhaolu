@@ -8,17 +8,70 @@ ul {
 }
 li {
     list-style: none;
-    text-align: center;
+    text-align: start;
 }
 a:link {
+    color: #7c808c;
     text-decoration: none; 
 } 
+a:visited{
+    color: #7c808c;
+    text-decoration: none;  
+}
 a:hover { 
+    color: #3086f2;
     text-decoration: none;  
 }
 a:active{
+    color: #7c808c;
     text-decoration: none;  
 }
 p{
     margin: 0;
+}
+
+.ell1{      /*单行省略*/
+    overflow: hidden; /*超过区域就隐藏*/
+    white-space: nowrap;/*规定段落中的文本不进行换行*/
+    text-overflow: ellipsis; /*显示省略符号来代表被修剪的文本。*/
+}
+.ell2{      /*多行省略*/
+    overflow: hidden;   /*超过区域就隐藏*/
+    display: -webkit-box; /*-webkit- 是浏览器前缀，兼容旧版浏览器的 即为display: box;*/
+    -webkit-line-clamp: 4;  /*限制在一个块元素显示的文本的行数*/
+    -webkit-box-orient: vertical; /*box-orient 属性规定框的子元素应该被水平或垂直排列。horizontal：水平，vertical：垂直*/
+    word-break: break-all; /*word-break 属性规定自动换行的处理方法 ，break-all：允许在单词内换行。*/
+    text-indent:2em;
+}
+
+
+.wd1200{
+    width: 1200px;
+    margin: 0 auto;
+}
+.in_midTitleBox{
+    height: 60px;
+    margin: 0 auto 40px;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+}
+.bookName1{
+    font-size: 18px;
+    font-weight: 600;
+}
+.bookAuthor1{
+    font-size: 16px;
+}
+.bookIntro1{
+    font: 14px;
+    color: silver;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+.xinghao{
+    color: red;
 }

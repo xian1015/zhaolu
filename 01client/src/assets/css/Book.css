@@ -1,0 +1,57 @@
+.bookBox{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.book_infor{
+    width: 900px;
+    height: 1000px;
+    background-color: lightblue;
+}
+
+
+
+
+
+
+
+.in_hotRank{
+    width: 240px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 0px 20px 0px rgba(29,29,31,0.13);
+    border-radius: 8px;
+    border: 1px solid rgba(222,222,224,1);
+}
+.in_hotRankBox{
+    width: 200px;
+    height: 280px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.in_hr_contentBox{
+    width: 200px;
+    height: 240px;
+}
+.in_hr_content{
+    font-size: 15px;
+    width: 180px;
+    height: 240px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.in_hr_content li{
+    width: 180px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}

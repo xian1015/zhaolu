@@ -1,0 +1,58 @@
+.re_homepage{
+    margin-left: 20px;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.re_infor{
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    margin: 50px auto;
+}
+.re_inforBox{
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
+}
+.re_infor_itembox{
+    width: 360px;
+    height: 40px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    line-height: 40px;
+}
+.re_infor_item{
+    width: auto;
+    height: 40px;
+    padding: 0 10px;
+}
+.re_infor_input{
+    width: 240px;
+    height: 35px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+.re_infor_input:focus {
+    outline-width: 0;
+}
+.re_infor_radio{
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+}
+.re_Sub{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin: 10px auto;
+    background-color: lightblue;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+}
