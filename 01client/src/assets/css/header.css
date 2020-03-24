@@ -21,9 +21,15 @@
     flex-direction: row;
 }
 .h_headerBoxLeft_logo{
+    position: relative;
     width: 250px;
     height: 150px;
-    background-color: palegoldenrod;
+}
+.h_logo{
+    position: absolute;
+    width: auto;
+    height: 150px;
+    right: 20px;
 }
 .h_nav{
     position: relative;

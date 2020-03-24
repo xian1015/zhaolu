@@ -16,13 +16,13 @@ import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
 //网页组件
 import App from './App.vue'
-import index from './components/Index.vue'
-import recharge from './components/Recharge.vue'
-import personalCenter from './components/PersonalCenter.vue'
-import homepage from './components/Homepage.vue'
-import regist from './components/Regist.vue'
-import book from './components/Book.vue'
-import zlHeader from './components/ZLHeader.vue'
+import index from './views/Index.vue'
+import recharge from './views/Recharge.vue'
+import personalCenter from './views/PersonalCenter.vue'
+import homepage from './views/Homepage.vue'
+import regist from './views/Regist.vue'
+import book from './views/Book.vue'
+import zlHeader from './views/ZLHeader.vue'
 
 // import 'jquery'
 

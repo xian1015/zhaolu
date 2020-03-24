@@ -28,6 +28,7 @@ let loginController = require("./controllers/LoginController");
 app.get("/login", loginController.login);
 
 
+
 //4,进行监听
 app.listen(port, function() {
   console.log(`${port}启动`);
