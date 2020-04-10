@@ -29,6 +29,9 @@ a:active{
 p{
     margin: 0;
 }
+div {
+    box-sizing: border-box;
+}
 
 .ell1{      /*单行省略*/
     overflow: hidden; /*超过区域就隐藏*/

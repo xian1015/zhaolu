@@ -5,10 +5,21 @@
     width: 100%;
     position: relative;
     z-index: 100;
+    position: fixed;
+    background-color: #fff;
+}
+.headerBorder{
+    width: auto;
+    height: 1px;
+    background-image: linear-gradient(to right, #c6bdd4, #99b4c9);
+}
+.headerBox{
+    width: auto;
+    height: 80px;
 }
 .h_headerBox{
     width: 1200px;
-    height: 150px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -22,13 +33,13 @@
 }
 .h_headerBoxLeft_logo{
     position: relative;
-    width: 250px;
-    height: 150px;
+    width: 200px;
+    height: 80px;
 }
 .h_logo{
     position: absolute;
     width: auto;
-    height: 150px;
+    height: 100px;
     right: 20px;
 }
 .h_nav{
@@ -39,7 +50,7 @@
 .h_navBox{
     position: absolute;
     width: 320px;
-    bottom: 5px;
+    bottom: 1px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -61,34 +72,34 @@
     font-size: 18px;
     text-align: center;
     line-height: 80px;
-    border-bottom: 2px #3086f2 solid;
-    color: #3086f2 !important;
+    border-bottom: 2px #99b4c9 solid;
+    color: #99b4c9 !important;
 }
 .h_nav_itemSele a:visited{
-    color: #3086f2 ;
+    color: #99b4c9 ;
 }
 .h_nav_itemNoSele a:visited{
     color: #7c808c ;
 }
 .h_nav_itemNoSele:hover,
 .h_nav_itemSele:hover{
-    border-bottom: 2px #3086f2 solid;
-    color: #3086f2;
+    border-bottom: 2px #99b4c9 solid;
+    color: #99b4c9;
 }
 .h_nav_itemSele a{
-    color: #3086f2 ;
+    color: #99b4c9 ;
 }
 .h_nav_itemNoSele a{
     color: #7c808c ;
 }
 .h_nav_itemNoSele:hover a,
 .h_nav_itemSele:hover a{
-    color: #3086f2;
+    color: #99b4c9;
 }
 
 
 .h_headerBoxCenter{
-    height: 150px;
+    height: 80px;
     display: flex;
     align-items: flex-end;
 }
@@ -98,24 +109,32 @@
 
 .h_headerBoxRight{
     width: 160px;
-    height: 150px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
 }
 .h_login{
+    position: relative;
     width: 150px;
     height: 40px;
     padding: 0px;
     margin: 0px 0px 10px;
-    color: #7c808c ;
+    color: #7c808c;
     font-size: 14px;
     line-height: 40px;
     text-align: center;
 }
+.h_zhuxiaoIcon{
+    border: 1px solid #7c808c;
+}
+.h_zhuxiao:hover{
+    color: #99b4c9;
+}
+
 .h_login a:hover{
-    color: #3086f2;
+    color: #99b4c9;
 }
 .h_login a:visited{
     color: #7c808c ;

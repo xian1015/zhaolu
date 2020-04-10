@@ -4,27 +4,71 @@
     <div class="pc_infor wd1200">
       <div class="pc_inforbox">
         <div class="pc_infor_item1">
-          <span>id:</span>
+          <div class="pc_info_titleBox">
+            <span class="pc_infor_titlefont">id</span>
+            <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+          </div>
+          <div class="pc_info_contentBox">{{userInfo.user_id}}</div>
         </div>
         <div class="pc_infor_item1">
-          <span>用户名：</span>
+          <div class="pc_info_titleBox">
+            <span class="pc_infor_titlefont">用户名</span>
+            <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+          </div>
+          <div class="pc_info_contentBox">{{userInfo.user_name}}</div>
         </div>
         <div class="pc_infor_item1">
-          <div class="pc_infor_item2">邮箱：</div>
-          <div class="pc_infor_item2">电话：</div>
+          <div class="pc_infor_item2">
+            <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">邮箱</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_email}}</div>
+          </div>
+          <div class="pc_infor_item2">
+            <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">电话</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_tele}}</div>
+          </div>
         </div>
         <div class="pc_infor_item1">
-          <div class="pc_infor_item2">性别：</div>
-          <div class="pc_infor_item2">年龄：</div>
+          <div class="pc_infor_item2">
+            <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">性别</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_sex}}</div>
+          </div>
+          <div class="pc_infor_item2">
+            <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">年龄</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_age}}</div>
+          </div>
         </div>
         <div class="pc_infor_item1">
-          <span>余额：</span>
+          <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">余额</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_score}}</div>
         </div>
         <div class="pc_infor_item1">
-          <span>已购数量：</span>
+          <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">已购数量</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_buyNum}}</div>
         </div>
         <div class="pc_infor_item3">
-          <span>已购书籍：</span>
+          <div class="pc_info_titleBox">
+              <span class="pc_infor_titlefont">已购书籍</span>
+              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            </div>
+            <div class="pc_info_contentBox">{{userInfo.user_buybook_id}}</div>
         </div>
       </div>
       <div class="in_hotRank">
@@ -84,7 +128,19 @@ export default {
         { id: 7, name: "某某", author: "p", url: "#" },
         { id: 8, name: "地球上线", author: "莫晨欢", url: "#" },
         { id: 9, name: "高能二维码", author: "青色羽翼", url: "#" }
-      ]
+      ],
+      userInfo: {
+        user_id: "",
+        user_name: "",
+        user_password: "",
+        user_age: "",
+        user_email: "",
+        user_sex: "",
+        user_tele: "",
+        user_score: "",
+        user_buyNum: "",
+        user_buybook_id: ""
+      }
     };
   },
 
@@ -97,21 +153,50 @@ export default {
     },
     exitLoginBox: function() {
       this.isLoginClick = !this.isLoginClick;
+    },
+    getInfo: function() {
+      let that = this;
+      let userName = localStorage.getItem("username");
+      let userPassword = localStorage.getItem("userpass");
+      let data = {
+        userName: userName,
+        userPassword: userPassword
+      };
+      that.axios
+        .get("http://localhost:8888/getInfo", {
+          params: data
+        })
+        .then(res => {
+          console.log(res.data);
+          that.userInfo.user_id = res.data.user_id;
+          that.userInfo.user_name = res.data.user_name;
+          that.userInfo.user_password = res.data.user_password;
+          that.userInfo.user_email = res.data.user_email;
+          that.userInfo.user_sex = res.data.user_sex;
+          that.userInfo.user_tele = res.data.user_tele;
+          that.userInfo.user_age = res.data.user_age;
+          that.userInfo.user_score = res.data.user_score;
+          that.userInfo.user_buyNum = res.data.user_buyNum;
+          if (res.data.user_buybook_id == "") {
+            that.userInfo.user_buybook_id = "未购买";
+          } else {
+            that.userInfo.user_buybook_id = res.data.user_buybook_id;
+          }
+          console.log(that.userInfo);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
-  components:{
+  components: {
     zlHeader
+  },
+  mounted() {
+    let that = this;
+    this.getInfo();
   }
 };
-//   mounted() {
-//     let that = this;
-//     this.axios.get("http://localhost:8888/cloudNote").then(res => {
-//       that.img = res.data;
-//     });
-//     this.axios.get("http://localhost:8888/cloudNoteUrl").then(res => {
-//       that.imgUrl = res.data;
-//     });
-//   }
 </script>
 <style scoped>
 @import "../assets/css/reset.css";

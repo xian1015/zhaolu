@@ -11,7 +11,7 @@ let urlencodedParser = bodyParser.urlencoded({
 //5,设置静态文件
 app.use(express.static("public"));
 //6,设置跨域访问
-app.all("*", function(req, res, next) {
+app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
@@ -23,13 +23,14 @@ app.all("*", function(req, res, next) {
 let ip = "localhost:";
 let port = 8888;
 
+let loginControllers = require("./controllers/LoginController");
+app.get("/login", loginControllers.login);
 
-let loginController = require("./controllers/LoginController");
-app.get("/login", loginController.login);
-
+let infoControllers = require("./controllers/InfoController");
+app.get("/getInfo", infoControllers.getInfo);
 
 
 //4,进行监听
-app.listen(port, function() {
+app.listen(port, function () {
   console.log(`${port}启动`);
 });

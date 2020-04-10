@@ -1,44 +1,67 @@
 .pc_infor{
     height: 1000px;
-    margin-top: 50px;
+    margin-top: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 .pc_inforbox{
     width: 900px;
-    height: 1000px;
+    height: auto;
     background-color: antiquewhite;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+    padding: 80px;
+    z-index: -10;
 }
 .pc_infor_item1{
-    width: 800px;
+    width: 700px;
     height: 80px;
-    background-color: cadetblue;
     margin: 10px auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     line-height: 80px;
+    z-index: 20;
 }
 .pc_infor_item2{
-    width: 400px;
+    width: 350px;
     height: 80px;
-    background-color: crimson;
+    display: flex;
+    justify-content: start;
 }
 .pc_infor_item3{
-    width: 800px;
-    height: 200px;
-    background-color: cadetblue;
+    width: 700px;
+    height: auto;
     margin: 10px auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     line-height: 80px;
 }
-
+.pc_info_titleBox{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+.pc_bg1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    z-index: -5;
+}
+.pc_infor_titlefont,
+.pc_info_contentBox{
+    position: relative;
+    z-index: 20;
+}
+.pc_info_contentBox{
+    position: relative;
+    margin-left: 5px;
+}
 
 .in_hotRank{
     width: 240px;

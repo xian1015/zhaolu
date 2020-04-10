@@ -7,12 +7,14 @@
       </div>
       <ul class="in_tsBox">
         <li v-for="item in typeList" v-bind:key="item.id">
-          <a href>{{item.name}}</a>
+          <a href="#" v-onclick="">{{item.name}}</a>
         </li>
       </ul>
     </div>
     <div class="in_banner wd1200">
-      <div class="in_bannerBox"></div>
+      <div class="in_bannerBox">
+        <img src="../assets/img/index/banner.png" alt="">
+      </div>
       <div class="in_hotRank">
         <div class="in_hotRankBox">
           <div class="in_hr_title">
@@ -119,7 +121,7 @@ export default {
             "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
         },
         {
-          id: 0,
+          id: 1,
           name: "撒野",
           author: "p",
           url: "#",
@@ -129,7 +131,7 @@ export default {
             "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
         },
         {
-          id: 0,
+          id: 2,
           name: "撒野",
           author: "p",
           url: "#",
@@ -139,7 +141,7 @@ export default {
             "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
         },
         {
-          id: 0,
+          id: 3,
           name: "撒野",
           author: "p",
           url: "#",

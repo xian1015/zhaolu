@@ -10,28 +10,28 @@
       <div class="re_inforBox">
         <div class="re_infor_itembox">
           <div class="re_infor_item"><span class="xinghao">*</span>用户名：</div>
-          <input class="re_infor_input" placeholder="请输入用户名" type="text" name="username" />
+          <input class="re_infor_input" placeholder="请输入用户名" v-model="userinput" type="text" name="username" />
         </div>
         <div class="re_infor_itembox">
           <div class="re_infor_item"><span class="xinghao">*</span>密码：</div>
-          <input class="re_infor_input" placeholder="请输入密码" type="password" name="password" />
+          <input class="re_infor_input" placeholder="请输入密码" v-model="passinput" type="password" name="password" />
         </div>
         <div class="re_infor_itembox">
-          <div class="re_infor_item">电话：</div>
-          <input class="re_infor_input" placeholder="请输入电话" v-model="input" clearable />
+          <div class="re_infor_item"><span class="xinghao">*</span>电话：</div>
+          <input class="re_infor_input" placeholder="请输入电话" v-model="teleinput" clearable />
         </div>
         <div class="re_infor_itembox">
           <div class="re_infor_item"><span class="xinghao">*</span>邮箱：</div>
-          <input class="re_infor_input" placeholder="请输入邮箱" type="email" name="user_email" />
+          <input class="re_infor_input" placeholder="请输入邮箱" type="email" v-model="emainput" name="user_email" />
         </div>
         <div class="re_infor_itembox">
-          <div class="re_infor_item">性别：</div>
+          <div class="re_infor_item"><span class="xinghao">*</span>性别：</div>
           <el-radio class="re_infor_radio" v-model="radio" label="1">男</el-radio>
           <el-radio class="re_infor_radio" v-model="radio" label="2">女</el-radio>
         </div>
         <div class="re_infor_itembox">
-          <div class="re_infor_item">年龄：</div>
-          <input class="re_infor_input" type="number" placeholder="请输入年龄" min="1" max="99" />
+          <div class="re_infor_item"><span class="xinghao">*</span>年龄：</div>
+          <input class="re_infor_input" type="number" placeholder="请输入年龄" v-model="ageinput" min="1" max="99" />
         </div>
       </div>
       <button class="re_Sub">
@@ -54,12 +54,22 @@ import app from "../App";
 export default {
   data: function() {
     return {
-      input: "",
-      radio: "2"
+      userinput: "",
+      passinput: "",
+      teleinput: "",
+      emainput: "",
+      ageinput: "",
+      radio: "2",
+      registTable:{},
     };
   },
 
-  methods: {}
+  methods: {
+    regist: function(){
+      let that = this;
+      
+    }
+  }
   // mounted() {
   //   let that = this;
   //   this.axios.get("http://localhost:8888/cloudNote").then(res => {

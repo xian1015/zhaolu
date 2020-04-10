@@ -1,9 +1,9 @@
 let SqlBase = require("./SqlBase");
-class LoginModel extends SqlBase {
+class InfoModel extends SqlBase {
   constructor() {
     super();
   }
-  login(req, res,callback) {
+  getInfo(req, res,callback) {
     let u = req.query.userName;
     let p = req.query.userPassword;
     let data = {};
@@ -16,16 +16,11 @@ class LoginModel extends SqlBase {
         console.log("[SELECT ERROR] - ", err.message);
         return;
       }
-      if (res.length > 0) {
-          data = { statusCode: 200, msg: '登录成功' };
-      } else data = { statusCode: 0, msg: '用户名或密码不正确' };
+      data = res[0];
       console.log(data);
-      console.log(res[0]);
-      let d = [data,res[0]];
-      callback(d);
+      callback(data);
     });
-    // callback(data);
   }
 }
-module.exports = LoginModel;
+module.exports = InfoModel;
 

@@ -4,17 +4,15 @@
       <div class="h_headerBox wd1200">
         <div class="h_headerBoxLeft">
           <a href="http://localhost:8080/#/index" class="h_headerBoxLeft_logo">
-          <img src="../assets/Logo.png" alt="朝露Logo" class="h_logo">
+            <img src="../assets/Logo.png" alt="朝露Logo" class="h_logo" />
           </a>
           <div class="h_nav">
             <ul class="h_navBox">
               <li v-for="item in navTitle" v-bind:key="item.id">
-                <router-link :to="{path:item.englishTitle}">
                   <div
                     v-bind:class="[isTitle ===item.title ? 'h_nav_itemSele' : 'h_nav_itemNoSele']"
-                    v-on:click="selected(item.title)"
+                    v-on:click="selected(item.title,item.id)"
                   >{{item.title}}</div>
-                </router-link>
               </li>
             </ul>
           </div>
@@ -28,9 +26,16 @@
           <el-button class="h_login" type="text" v-if="!islogin" v-on:click="loginClick">
             <a>登录/注册</a>
           </el-button>
-          <div class="h_login" v-if="islogin">欢迎您，{{userInput}}</div>
+          <div class="h_login" v-if="islogin">
+            欢迎您，{{$store.getters.username}}&nbsp;&nbsp;&nbsp;
+            <span
+              class="h_zhuxiao"
+              v-on:click="exitLogin"
+            >注销</span>
+          </div>
         </div>
       </div>
+      <div class="headerBorder"></div>
     </div>
     <div class="h_loginBigBox" v-if="isLoginClick">
       <div class="loginMark"></div>
@@ -71,6 +76,7 @@
         </div>
       </div>
     </div>
+    <div class="headerBox"></div>
   </div>
 </template>
 <script>
@@ -85,6 +91,7 @@ import recharge from "./Recharge";
 import personalCenter from "./PersonalCenter";
 import regist from "./Regist";
 import app from "../App";
+import logincheck from "./LoginCheck";
 
 export default {
   name: "ZLHeader",
@@ -92,12 +99,18 @@ export default {
     return {
       userInput: "",
       passInput: "",
+      userInfo: {},
+      loading: false,
+      loginSess: {
+        username: "",
+        password: ""
+      },
       img: [],
       imgUrl: [],
       navTitle: [
         { id: 0, title: "首页", englishTitle: "./index" },
-        { id: 1, title: "充值", englishTitle: "./recharge" },
-        { id: 2, title: "个人中心", englishTitle: "./personalCenter" }
+        { id: 1, title: "个人中心", englishTitle: "./personalCenter" },
+        { id: 2, title: "充值", englishTitle: "./recharge" }
       ],
       // isTitle: "",
       islogin: false,
@@ -111,8 +124,15 @@ export default {
   props: ["isTitle"],
 
   methods: {
-    selected: function(title) {
-      this.isTitle = title;
+    selected: function(title,id) {
+      let that = this;
+      let u = localStorage.getItem("username");
+      if (u != null||id == 0) {
+        this.title = title;
+        that.$router.push(this.navTitle[id].englishTitle);
+      } else {
+        that.$router.push("logincheck");
+      }
     },
     loginClick: function() {
       this.isLoginClick = !this.isLoginClick;
@@ -122,55 +142,71 @@ export default {
     },
     login: function() {
       let that = this;
-      let u = that.userInput;
-      let p = that.passInput;
+      let userName = that.userInput;
+      let userPassword = that.passInput;
       var reg = /^[a-z0-9]{0,8}$/i; // i是忽略大小写,g是全局查找
-      if (u.length !== 0 && p.length !== 0 && (!reg.test(u) || !reg.test(p))) {
+      if (
+        userName.length !== 0 &&
+        userPassword.length !== 0 &&
+        (!reg.test(userName) || !reg.test(userPassword))
+      ) {
         that.isLoginTypeWrong = true;
-      } else if (u.length === 0 || p.length === 0) {
+      } else if (userName.length === 0 || userPassword.length === 0) {
         that.isLoginEmpty = true;
       } else {
         that.isLoginTypeWrong = false;
         that.isLoginEmpty = false;
-        this.axios({
-          method: "post",
-          url: "/login",
-          data: { u, p }
-        })
+        let data = {
+          userName: userName,
+          userPassword: userPassword
+        };
+        this.axios
+          .get("http://localhost:8888/login", {
+            params: data
+          })
           .then(res => {
-            console.log(res.data);
-            _this.userToken = "Bearer " + res.data.data.body.token;
-            // 将用户token保存到vuex中
-            _this.changeLogin({ Authorization: _this.userToken });
-            _this.$router.push("/home");
-            alert("登陆成功");
+            if (res.data[0].statusCode === 200) {
+              that.isLoginWrong = false;
+              console.log(res.data);
+              let userInfo = res.data[1];
+              that.userInfo = userInfo;
+              //localUserName 这个是store里面的方法名，后面就是要缓存的值
+              this.$store.commit("localUserName", userInfo.user_name);
+              this.$store.commit("localUserPass", userInfo.user_password);
+              //这里结束的位置
+              that.islogin = true;
+              window.location.reload();;
+            } else {
+              that.loading = false;
+              that.isLoginWrong = true;
+            }
           })
           .catch(error => {
-            alert("账号或密码错误");
             console.log(error);
           });
-        var url = "localhost:8888/login?username=" + u + "&password=" + p;
-        //4. 获取服务器返回结果
-        that.axios.get(url).then(result => {
-          // 5.判断提示用户登录结果
-          if (result.data.code == 1) {
-            alert("登录成功");
-          } else {
-            that.isLoginWrong = true;
-          }
-        });
       }
+    },
+    exitLogin: function() {
+      this.$store.commit("clearUserName");
+      this.$store.commit("clearUserPass");
+      this.islogin = false;
+      window.location.reload();
+    }
+  },
+
+  mounted() {
+    let that = this;
+    let u = localStorage.getItem("username");
+    if (u != null) {
+      that.islogin = true;
+    } else {
+      that.islogin = false;
     }
   }
-  // mounted() {
-  //   let that = this;
-  //   this.axios.get("http://localhost:8888/login").then(res => {
-  //     that.test = res.data;
-  //   });
-  // }
 };
 </script>
 <style scoped>
 @import "../assets/css/reset.css";
 @import "../assets/css/header.css";
+@import "../assets/css/Index.css";
 </style>

@@ -1,10 +1,11 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import VueRouter from 'vue-router'
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios,Vuex)
 //axios组件
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -23,6 +24,9 @@ import homepage from './views/Homepage.vue'
 import regist from './views/Regist.vue'
 import book from './views/Book.vue'
 import zlHeader from './views/ZLHeader.vue'
+import logincheck from './views/LoginCheck.vue'
+import store from './store/store'
+
 
 // import 'jquery'
 
@@ -47,6 +51,8 @@ const routes = [
   { path: '/homepage', component: homepage, meta: { title: '朝露书城'},children:[
     { path: '/zlHeader', component: zlHeader},
   ]},
+  { path: '/logincheck', component: logincheck, meta: { title: '登录检查'},children:[
+  ]},
 ]
 const router = new VueRouter({
   routes
@@ -54,6 +60,7 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
 
