@@ -2,6 +2,7 @@
   <div class="personalCenter">
     <zlHeader isTitle="个人中心"></zlHeader>
     <div class="pc_infor wd1200">
+      <div class="pc_lanBox"></div>
       <div class="pc_inforbox">
         <div class="pc_infor_item1">
           <div class="pc_info_titleBox">

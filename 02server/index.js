@@ -29,6 +29,9 @@ app.get("/login", loginControllers.login);
 let infoControllers = require("./controllers/InfoController");
 app.get("/getInfo", infoControllers.getInfo);
 
+let registControllers = require("./controllers/RegistControllers");
+app.get("/regist", registControllers.regist);
+
 
 //4,进行监听
 app.listen(port, function () {

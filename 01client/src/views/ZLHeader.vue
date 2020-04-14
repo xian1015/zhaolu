@@ -31,7 +31,9 @@
             <span
               class="h_zhuxiao"
               v-on:click="exitLogin"
-            >注销</span>
+            >注&nbsp;销
+            <i class="h_zhuxiaounder"></i>
+            </span>
           </div>
         </div>
       </div>
@@ -175,7 +177,7 @@ export default {
               this.$store.commit("localUserPass", userInfo.user_password);
               //这里结束的位置
               that.islogin = true;
-              window.location.reload();;
+              window.location.reload();
             } else {
               that.loading = false;
               that.isLoginWrong = true;

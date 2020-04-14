@@ -1,9 +1,13 @@
 .pc_infor{
+    position: relative;
     height: 1000px;
     margin-top: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.pc_lanBox{
+    position: absolute;
 }
 .pc_inforbox{
     width: 900px;
