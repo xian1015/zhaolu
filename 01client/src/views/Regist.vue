@@ -117,9 +117,9 @@ export default {
       let retele = that.teleinput;
       let reema = that.emainput;
       let reage = that.ageinput;
-      let resex = '女';
-      if(that.radio == "1"){
-        resex = '男';
+      let resex = "女";
+      if (that.radio == "1") {
+        resex = "男";
       }
       that.registTable = {
         reName,
@@ -149,19 +149,19 @@ export default {
         if (!reg.test(reName)) {
           that.isNameOK = true;
           that.isTrue = false;
-        } else{
+        } else {
           that.isNameOK = false;
         }
         if (!reg.test(rePass)) {
           that.isPassOK = true;
           that.isTrue = false;
-        } else{
+        } else {
           that.isPassOK = false;
         }
         if (!teleReg.test(retele)) {
           that.isTeleEmp = true;
           that.isTrue = false;
-        } else{
+        } else {
           that.isTeleEmp = false;
         }
         if (!emaReg.test(reema)) {
@@ -176,30 +176,36 @@ export default {
         } else {
           that.isAgeEmp = false;
         }
-        if(reg.test(reName)&&reg.test(rePass)&&teleReg.test(retele)&&emaReg.test(reema)&&(reage >= 1 && reage <= 99)){
+        if (
+          reg.test(reName) &&
+          reg.test(rePass) &&
+          teleReg.test(retele) &&
+          emaReg.test(reema) &&
+          reage >= 1 && reage <= 99
+        ) {
           that.isTrue = true;
         }
       }
-      if(that.isTrue){
+      if (that.isTrue) {
         // console.log("isTrue") 检测进语句没
         let data = that.registTable;
-            this.axios
-              .get("http://localhost:8888/regist", {
-                params: data
-              })
-              .then(res => {
-                console.log(res);
-                if(res.data.codes == 0){
-                  that.isNameRep = true;
-                } else if(res.data.codes == 1) {
-                  alert("注册成功！请回到首页进行登录！")
-                  that.isNameRep = false;
-                  that.$router.push("./index");
-                }
-              })
-              .catch(error => {
-                console.log(error);
-              });
+        this.axios
+          .get("http://localhost:8888/regist", {
+            params: data
+          })
+          .then(res => {
+            console.log(res);
+            if (res.data.codes == 0) {
+              that.isNameRep = true;
+            } else if (res.data.codes == 1) {
+              alert("注册成功！请回到首页进行登录！");
+              that.isNameRep = false;
+              that.$router.push("./index");
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }
     }
   },

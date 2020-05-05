@@ -1,0 +1,53 @@
+.bookImpBox{
+    width: 600px;
+    height: 500px;
+    margin: 50px auto;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bi_topBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bi_leftBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.bi_rightBox{
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bi_itemBox{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.bi_title{
+    width: 60px;
+    line-height: 40px;
+}
+.buttonBox{
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+.bi_Sub{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin: 10px auto;
+    background-color: lightblue;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+}

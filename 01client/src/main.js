@@ -25,7 +25,8 @@ import regist from './views/Regist.vue'
 import book from './views/Book.vue'
 import zlHeader from './views/ZLHeader.vue'
 import logincheck from './views/LoginCheck.vue'
-import store from './store/store'
+import bookImp from './views/BookImp.vue'
+import store from './store/store.js'
 
 
 // import 'jquery'
@@ -52,6 +53,8 @@ const routes = [
     { path: '/zlHeader', component: zlHeader},
   ]},
   { path: '/logincheck', component: logincheck, meta: { title: '登录检查'},children:[
+  ]},
+  { path: '/bookImp', component: bookImp, meta: { title: '书籍录入'},children:[
   ]},
 ]
 const router = new VueRouter({

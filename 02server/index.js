@@ -32,6 +32,12 @@ app.get("/getInfo", infoControllers.getInfo);
 let registControllers = require("./controllers/RegistControllers");
 app.get("/regist", registControllers.regist);
 
+let bookImpControllers = require("./controllers/BookImpControllers");
+app.get("/bookImp", bookImpControllers.bookImp);
+
+let recommendController = require("./controllers/RecommendController");
+app.get("/bookImp", recommendController.getBook);
+
 
 //4,进行监听
 app.listen(port, function () {

@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   mounted() {
-    this.$router.push("./personalCenter");
+    this.$router.push("./book");
   }
-}
+};
 </script>
 
 <style>

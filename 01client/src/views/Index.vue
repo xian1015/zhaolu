@@ -32,17 +32,17 @@
     </div>
     <div class="in_todayIntro wd1200">
       <div class="in_midTitleBox">
-        <p class="in_midTitle">今日推荐</p>
+        <p class="in_midTitle">随机推荐</p>
       </div>
-      <div class="in_ticontentBox">
-        <ul class="in_ticontent">
-          <li class="in_ticontent_item" v-for="item in todayIntroList" v-bind:key="item.id">
-            <div class="in_ticontent_itemBox">
-              <a href class="in_ti_img">
+      <div class="in_rrcontentBox">
+        <ul class="in_rrcontent">
+          <li class="in_rrcontent_item" v-for="item in RandomRecomList" v-bind:key="item.id">
+            <div class="in_rrcontent_itemBox">
+              <a href class="in_rr_img">
                 <img src alt />
               </a>
-              <div class="in_ti_text">
-                <div class="in_ti_textBox">
+              <div class="in_rr_text">
+                <div class="in_rr_textBox">
                   <a href>
                     <p class="bookName1">{{item.name}}</p>
                   </a>
@@ -51,7 +51,7 @@
                     <a href>{{item.author}}</a>
                   </p>
                 </div>
-                <div class="in_ti_textIntro">
+                <div class="in_rr_textIntro">
                   <p>
                     简介：
                     <span class="bookIntro1 ell2">{{item.intro}}</span>
@@ -59,7 +59,7 @@
                 </div>
               </div>
             </div>
-            <div class="in_ti_type">
+            <div class="in_rr_type">
               <p>类型:{{item.type}}</p>
             </div>
           </li>
@@ -109,7 +109,7 @@ export default {
         { id: 9, name: "高能二维码", author: "青色羽翼", url: "#" }
       ],
       hotRankNum: 0,
-      todayIntroList: [
+      RandomRecomList: [
         {
           id: 0,
           name: "撒野",
@@ -173,16 +173,13 @@ export default {
   },
   components:{
     zlHeader
+  },
+  mounted() {
+    let that = this;
+    this.axios.get("http://localhost:8888/Recommend").then(res => {
+      that.img = res.data;
+    });
   }
-  // mounted() {
-  //   let that = this;
-  //   this.axios.get("http://localhost:8888/cloudNote").then(res => {
-  //     that.img = res.data;
-  //   });
-  //   this.axios.get("http://localhost:8888/cloudNoteUrl").then(res => {
-  //     that.imgUrl = res.data;
-  //   });
-  // }
 };
 </script>
 <style scoped>

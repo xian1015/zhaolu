@@ -5,9 +5,38 @@
     justify-content: space-between;
 }
 .book_infor{
+    box-sizing: border-box;
     width: 900px;
-    height: 1000px;
+    height: auto;
     background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: start;
+    padding: 40px 0;
+}
+.bookRight{
+    width: 150px;
+    height: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.bookCover{
+    width: 150px;
+    height: 210px;
+    background-color: pink;
+}
+.bookPay{
+    width: 100px;
+    height: 35px;
+    margin-top: 20px;
+}
+.bookInfo{
+    width: 620px;
+    background-color: pink;
 }
 
 
