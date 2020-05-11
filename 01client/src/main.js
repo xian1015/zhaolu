@@ -26,6 +26,8 @@ import zlHeader from './views/ZLHeader.vue'
 import randomRecom from './views/RandomRecom.vue'
 import hotRank from './views/HotRank.vue'
 import logincheck from './views/LoginCheck.vue'
+import middle from './views/Middle.vue'
+import type from './views/Type.vue'
 import bookImp from './views/BookImp.vue'
 import backStage from './views/BackStage.vue'
 import bsManage from './views/BSManage.vue'
@@ -47,14 +49,20 @@ const routes = [
     { path: '/hotRank',name:'hotRank', component: hotRank},
   ]},
   { path: '/personalCenter', name: 'personalCenter', component: personalCenter, meta: { title: '朝露书城——个人中心'},children:[
+    { path: '/hotRank',name:'hotRank', component: hotRank},
   ]},
   { path: '/recharge',name:'recharge', component: recharge, meta: { title: '朝露书城——充值中心'},children:[
   ]},
   { path: '/regist',name:'regist', component: regist, meta: { title: '朝露书城——注册页面'},children:[
   ]},
-  { path: '/book',name:'book', component: book, meta: { title: '朝露书城'},children:[
+  { path: '/book',name:'book', component: book,meta: { title: '朝露书城'},children:[
+    { path: '/hotRank',name:'hotRank', component: hotRank},
   ]},
   { path: '/logincheck',name:'logincheck', component: logincheck, meta: { title: '登录检查'},children:[
+  ]},
+  { path: '/middle',name:'middle', component: middle, meta: { title: '朝露书城——愿你如朝如露，热切通透'},children:[
+  ]},
+  { path: '/type',name:'type', component: type, meta: { title: '朝露书城——愿你如朝如露，热切通透'},children:[
   ]},
   { path: '/backStage',name:'backStage', component: backStage, meta: { title: '后台登录'},children:[
   ]},

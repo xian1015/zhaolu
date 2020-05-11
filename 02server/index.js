@@ -26,6 +26,13 @@ let port = 8888;
 let loginControllers = require("./controllers/LoginController");
 app.get("/login", loginControllers.login);
 
+let bookControllers = require("./controllers/BookController");
+app.get("/book", bookControllers.bookInfo);
+
+let hotRanKController = require("./controllers/HotRanKController");
+app.get("/hotrank", hotRanKController.getHT);
+
+
 let adminLoginControllers = require("./controllers/AdminLoginController");
 app.get("/adminLogin", adminLoginControllers.adminLogin);
 

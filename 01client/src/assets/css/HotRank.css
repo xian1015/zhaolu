@@ -21,14 +21,14 @@
     height: 240px;
 }
 .in_hr_content{
-    font-size: 15px;
+    font-size: 14px;
     width: 180px;
     height: 240px;
     margin: 0 auto;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
 }
 .in_hr_content li{

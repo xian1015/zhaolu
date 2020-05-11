@@ -17,14 +17,11 @@
               <el-radio-button label="言情"></el-radio-button>
               <el-radio-button label="悬疑"></el-radio-button>
               <el-radio-button label="科幻"></el-radio-button>
-              <el-radio-button label="纯爱"></el-radio-button>
+              <el-radio-button label="奇幻"></el-radio-button>
             </el-radio-group>
           </div>
         </div>
-        <div class="bi_rightBox">
-
-          
-        </div>
+        <div class="bi_rightBox"></div>
       </div>
       <div class="bi_itemBox">
         <span class="bi_title">价格：</span>
@@ -67,7 +64,7 @@ export default {
       bookName: "",
       author: "",
       type: "言情",
-      price: "",
+      price: "1",
       introduction: "",
       bookinfo: {},
       imageUrl: ""
@@ -101,14 +98,17 @@ export default {
             that.isNameRep = true;
           } else if (res.data.codes == 1) {
             alert("录入成功！");
-            this.$router.go(0);
+            that.bookName = "";
+            that.author = "";
+            that.type = "言情";
+            that.price = "";
+            that.introduction = "";
           }
         })
         .catch(error => {
           console.log(error);
         });
-    },
-
+    }
   },
   mounted() {
     let that = this;

@@ -56,7 +56,6 @@ export default {
         adminname: "",
         password: ""
       },
-      islogin: false,
       isLoginEmpty: false,
       isLoginWrong: false
     };
@@ -84,10 +83,7 @@ export default {
               this.$store.commit("localAdminName", adminInfo.admin_name);
               this.$store.commit("localAdminPass", adminInfo.admin_password);
               //这里结束的位置
-              that.islogin = true;
-              that.$router.push({name: 'bsManage',params: { quanxian: 'backStage' }});
-            } else {
-              that.loading = false;
+              that.$router.push({name: 'bsManage',params: { quanxian: 'bs' }});
             }
           })
           .catch(error => {

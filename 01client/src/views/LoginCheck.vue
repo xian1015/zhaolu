@@ -19,20 +19,22 @@ export default {
     return {
       count: 3,
       quanxian: this.$route.params.quanxian,
+      timer:'',
     };
   },
 
   methods: {
     countdown: function() {
-        let that = this;
+      let that = this;
       if (that.count > 0) {
         that.count--;
       } else {
-        clearInterval();
         if(that.quanxian == "backStage"){
           that.$router.push("./backStage");
+          clearInterval(that.timer);
         } else {
           that.$router.push("./index");
+          clearInterval(that.timer);
         }
       }
     }
@@ -40,7 +42,7 @@ export default {
 
   mounted() {
     let that = this;
-    setInterval(this.countdown, 1000);
+    this.timer = setInterval(this.countdown, 1000);
   }
 };
 </script>

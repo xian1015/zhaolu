@@ -36,7 +36,9 @@ const mutations = {
 }
 const state = {
   username: '' || localStorage.getItem('username'),
-  userpass: '' || localStorage.getItem('userpass')
+  userpass: '' || localStorage.getItem('userpass'),
+  adminname: '' || localStorage.getItem('adminname'),
+  adminpass: '' || localStorage.getItem('adminpass')
 }
 // getters 只会依赖 state 中的成员去更新
 const getters = {

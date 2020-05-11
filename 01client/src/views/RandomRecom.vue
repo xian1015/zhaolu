@@ -8,17 +8,15 @@
         <ul class="in_rrcontent">
           <li class="in_rrcontent_item" v-for="item in RandomRecomList" v-bind:key="item.id">
             <div class="in_rrcontent_itemBox">
-              <a href>
+              <router-link :to="{path:'/middle',query: {id: item.book_id}}">
                 <img class="in_rr_img" :src="item.book_cover" alt />
-              </a>
+              </router-link>
               <div class="in_rr_text">
                 <div class="in_rr_textBox">
-                  <a href>
+                  <router-link :to="{path:'/middle',query: {id: item.book_id}}">
                     <p class="bookName1">{{item.book_name}}</p>
-                  </a>
-                  <p class="bookAuthor1">
-                    作者：{{item.author}}
-                  </p>
+                  </router-link>
+                  <p class="bookAuthor1">作者：{{item.author}}</p>
                 </div>
                 <div class="in_rr_textIntro">
                   <p class="bookIntroTitle">简介：</p>
@@ -48,53 +46,15 @@ export default {
   name: "RandomRecom",
   data: function() {
     return {
-      RandomRecomList: [],
-      i: [
-        {
-          id: 0,
-          book_name: "撒野",
-          author: "p",
-          url: "#",
-          img: "./",
-          bigtype_name: "纯爱",
-          introduction:
-            "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
-        },
-        {
-          id: 1,
-          book_name: "撒野",
-          author: "p",
-          url: "#",
-          img: "./",
-          bigtype_name: "纯爱",
-          introduction:
-            "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
-        },
-        {
-          id: 2,
-          book_name: "撒野",
-          author: "p",
-          url: "#",
-          img: "./",
-          bigtype_name: "纯爱",
-          introduction:
-            "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
-        },
-        {
-          id: 3,
-          book_name: "撒野",
-          author: "p",
-          url: "#",
-          img: "./",
-          bigtype_name: "纯爱",
-          introduction:
-            "我想，左肩有你，右肩微笑。我想，在你眼里，撒野奔跑，我想，一个眼神，就到老。重点学校的优等生蒋丞被寄养家庭“流放”到亲生父亲所在的钢厂，陌生的环境、粗鄙的父亲、与曾经学校完全不能相提并论的四中都令其感到压抑郁闷。直到某一天，机缘巧合下，蒋丞遇到了“钢厂小霸王”顾飞，至此开始了一段关于“拯救”与“希望”的故事……"
-        }
-      ]
+      RandomRecomList: []
     };
   },
 
-  methods: {},
+  methods: {
+    reload: function() {
+      window.location.reload();
+    }
+  },
   props: ["recomNum"],
   mounted() {
     let that = this;
@@ -105,7 +65,6 @@ export default {
       })
       .then(res => {
         that.RandomRecomList = res.data;
-        console.log(that.RandomRecomList);
       });
   }
 };

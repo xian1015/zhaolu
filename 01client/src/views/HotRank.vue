@@ -7,7 +7,9 @@
       <div class="in_hr_contentBox">
         <ul class="in_hr_content">
           <li v-for="item in hotRank" v-bind:key="item.id" class="ell1">
-            <a href="item.url">{{item.id+1}}.{{item.name}}&nbsp;作者：{{item.author}}</a>
+            <router-link :to="{path:'/book',query: {id: item.book_id}}">
+            <a href="item.url">{{item.id}}.&nbsp;{{item.book_name}}&nbsp;&nbsp;&nbsp;{{item.author}}&nbsp;著</a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -28,7 +30,7 @@ export default {
   name: "HotRank",
   data: function() {
     return {
-      hotRank: [
+      hotRank1: [
         { id: 0, name: "撒野", author: "p", url: "#" },
         { id: 1, name: "某某", author: "p", url: "#" },
         { id: 2, name: "地球上线", author: "莫晨欢", url: "#" },
@@ -40,10 +42,11 @@ export default {
         { id: 8, name: "地球上线", author: "莫晨欢", url: "#" },
         { id: 9, name: "高能二维码", author: "青色羽翼", url: "#" }
       ],
+      hotRank:[],
       hotRankNum: 0,
     };
   },
-  
+  props:["typeID"],
 
   methods: {
 
@@ -51,6 +54,17 @@ export default {
 
   mounted() {
     let that = this;
+    let data = { typeID: that.typeID };
+    this.axios
+      .get("http://localhost:8888/hotrank", {
+        params: data
+      })
+      .then(res => {
+        that.hotRank = res.data;
+        for(let i =0;i<that.hotRank.length;i++){
+          that.hotRank[i].id=i+1;
+        }
+      });
   }
 };
 </script>

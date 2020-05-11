@@ -33,10 +33,8 @@ class RecommendModel extends SqlBase {
         }
         if(!buftype){
           numList.push(buf);
-          console.log(buf);
         }
       }
-      console.log(numList);
       for(let i=0;i<numList.length;i++){
         that.connection.query(sql1,[numList[i]], function (err, res) {
           if (err) {
@@ -44,11 +42,9 @@ class RecommendModel extends SqlBase {
             return;
           }
           let data =  res[0];
-          data.book_cover = ip+port+"/bookcovers/"+data.book_id+".jpg"
-          console.log(data);
+          data.book_cover = ip+port+"/bookcovers/"+data.book_id+".jpg";
           bookList.push(data);
           if(i == numList.length-1){
-            console.log(bookList);
             callback(bookList);
           }
         });

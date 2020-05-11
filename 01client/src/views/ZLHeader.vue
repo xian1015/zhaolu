@@ -18,8 +18,9 @@
           </div>
         </div>
         <div class="h_headerBoxCenter">
-          <div class="h_search">
-            <el-input placeholder="请输入搜索内容" prefix-icon="el-icon-search" v-model="searchInput"></el-input>
+          <div class="h_searchBox">
+            <el-input class="h_search" placeholder="请输入搜索的书本内容" prefix-icon="el-icon-search" v-model="searchInput"></el-input>
+            <button class="searchButton" v-on:click="search">搜&nbsp;索</button>
           </div>
         </div>
         <div class="h_headerBoxRight">
@@ -195,6 +196,9 @@ export default {
       this.$store.commit("clearUserPass");
       this.islogin = false;
       window.location.reload();
+    },
+    search:function(){
+      console.log(this.searchInput);
     }
   },
 

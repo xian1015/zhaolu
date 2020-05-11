@@ -7,7 +7,9 @@
       </div>
       <ul class="in_tsBox">
         <li v-for="item in typeList" v-bind:key="item.id">
+          <router-link :to="{path:'/type',query: {id: item.id}}">
           <a href="#">{{item.name}}</a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -15,9 +17,9 @@
       <div class="in_bannerBox">
         <img src="../assets/img/index/banner.png" alt="">
       </div>
-      <hotRank></hotRank>
+      <hotRank typeID="undefined"></hotRank>
     </div>
-    <randomRecom></randomRecom>
+    <randomRecom recomNum=4></randomRecom>
   </div>
 </template>
 <script>
@@ -54,7 +56,7 @@ export default {
         { id: 0, name: "言情" },
         { id: 1, name: "悬疑" },
         { id: 2, name: "科幻" },
-        { id: 3, name: "纯爱" }
+        { id: 3, name: "奇幻" }
       ]
     };
   },
@@ -77,9 +79,6 @@ export default {
   },
   mounted() {
     let that = this;
-    this.axios.get("http://localhost:8888/Recommend").then(res => {
-      that.img = res.data;
-    });
   }
 };
 </script>

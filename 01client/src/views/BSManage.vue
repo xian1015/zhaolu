@@ -83,7 +83,9 @@ export default {
   },
   mounted() {
     let that = this;
-    if (that.quanxian != "backStage") {
+    let a = localStorage.getItem("adminname");
+    console.log(a);
+    if (that.quanxian != "bs") {
       that.$router.push({
         name: "logincheck",
         params: { quanxian: "backStage" }
