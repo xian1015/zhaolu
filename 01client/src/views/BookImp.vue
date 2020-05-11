@@ -101,7 +101,7 @@ export default {
             that.bookName = "";
             that.author = "";
             that.type = "言情";
-            that.price = "";
+            that.price = "1";
             that.introduction = "";
           }
         })

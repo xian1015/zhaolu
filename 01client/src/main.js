@@ -63,6 +63,7 @@ const routes = [
   { path: '/middle',name:'middle', component: middle, meta: { title: '朝露书城——愿你如朝如露，热切通透'},children:[
   ]},
   { path: '/type',name:'type', component: type, meta: { title: '朝露书城——愿你如朝如露，热切通透'},children:[
+    { path: '/hotRank',name:'hotRank', component: hotRank},
   ]},
   { path: '/backStage',name:'backStage', component: backStage, meta: { title: '后台登录'},children:[
   ]},

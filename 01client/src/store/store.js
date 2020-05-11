@@ -33,19 +33,30 @@ const mutations = {
     // 把登录的用户的名保存到localStorage中，防止页面刷新，导致vuex重新启动，用户名就成为初始值（初始值为空）的情况
     localStorage.setItem('adminpass', adminpass)
   },
+  localtypeID: (state, typeID) => {
+    state.typeID = typeID
+    // 把登录的用户的名保存到localStorage中，防止页面刷新，导致vuex重新启动，用户名就成为初始值（初始值为空）的情况
+    localStorage.setItem('typeID', typeID)
+  },
+  cleartypeID: (state) => {
+    state.typeID = null;
+    localStorage.removeItem('typeID')
+  },
 }
 const state = {
   username: '' || localStorage.getItem('username'),
   userpass: '' || localStorage.getItem('userpass'),
   adminname: '' || localStorage.getItem('adminname'),
-  adminpass: '' || localStorage.getItem('adminpass')
+  adminpass: '' || localStorage.getItem('adminpass'),
+  typeID: '' || localStorage.getItem('typeID'),
 }
 // getters 只会依赖 state 中的成员去更新
 const getters = {
   username: (state) => state.username,
   userpass: (state) => state.userpass,
   adminname: (state) => state.adminname,
-  adminpass: (state) => state.adminpass
+  adminpass: (state) => state.adminpass,
+  typeID: (state) => state.typeID,
 }
 const store = new Vuex.Store({
   actions,

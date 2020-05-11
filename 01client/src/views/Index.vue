@@ -7,8 +7,8 @@
       </div>
       <ul class="in_tsBox">
         <li v-for="item in typeList" v-bind:key="item.id">
-          <router-link :to="{path:'/type',query: {id: item.id}}">
-          <a href="#">{{item.name}}</a>
+          <router-link :to="{path:'/type',query: {type: item.id}}">
+          {{item.name}}
           </router-link>
         </li>
       </ul>
