@@ -3,10 +3,10 @@ let RecommendModel = require("../model/RecommendModel");
 
 class RecommendService {
   constructor() {}
-  getBook(callback) {
+  getBook(req, res,callback) {
     let recommendModel = new RecommendModel();
     //获得数据
-    recommendModel.getBook(function(data) {
+    recommendModel.getBook(req, res,function(data) {
       //获得每个课程
       callback(data);
     });

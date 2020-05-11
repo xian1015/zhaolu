@@ -4,21 +4,21 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.book_infor{
+.book_inforBox{
     box-sizing: border-box;
     width: 900px;
     height: auto;
-    background-color: lightblue;
+    background-color: #B3C0D1;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-self: start;
-    padding: 40px 0;
+    padding: 20px 24px;
 }
-.bookRight{
+.bookLeft{
+    box-sizing: border-box;
     width: 150px;
     height: auto;
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -27,16 +27,22 @@
 .bookCover{
     width: 150px;
     height: 210px;
-    background-color: pink;
+    background-color: rgb(238, 241, 246);
 }
 .bookPay{
     width: 100px;
     height: 35px;
-    margin-top: 20px;
+    margin-top: 15px;
+    text-align: center;
+    line-height: 40px;
+    background-color: rgb(238, 241, 246);
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
 }
 .bookInfo{
     width: 620px;
-    background-color: pink;
+    background-color: rgb(238, 241, 246);
 }
 
 

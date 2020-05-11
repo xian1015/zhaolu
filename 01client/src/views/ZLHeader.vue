@@ -9,10 +9,10 @@
           <div class="h_nav">
             <ul class="h_navBox">
               <li v-for="item in navTitle" v-bind:key="item.id">
-                  <div
-                    v-bind:class="[isTitle ===item.title ? 'h_nav_itemSele' : 'h_nav_itemNoSele']"
-                    v-on:click="selected(item.title,item.id)"
-                  >{{item.title}}</div>
+                <div
+                  v-bind:class="[isTitle ===item.title ? 'h_nav_itemSele' : 'h_nav_itemNoSele']"
+                  v-on:click="selected(item.title,item.id)"
+                >{{item.title}}</div>
               </li>
             </ul>
           </div>
@@ -31,8 +31,9 @@
             <span
               class="h_zhuxiao"
               v-on:click="exitLogin"
-            >注&nbsp;销
-            <i class="h_zhuxiaounder"></i>
+            >
+              注&nbsp;销
+              <i class="h_zhuxiaounder"></i>
             </span>
           </div>
         </div>
@@ -88,17 +89,18 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, axios);
 axios.default.widthCredentials = true;
 
+import app from "../App";
 import index from "./Index";
 import recharge from "./Recharge";
 import personalCenter from "./PersonalCenter";
 import regist from "./Regist";
-import app from "../App";
 import logincheck from "./LoginCheck";
 
 export default {
   name: "ZLHeader",
   data: function() {
     return {
+      searchInput:"",
       userInput: "",
       passInput: "",
       userInfo: {},
@@ -126,10 +128,10 @@ export default {
   props: ["isTitle"],
 
   methods: {
-    selected: function(title,id) {
+    selected: function(title, id) {
       let that = this;
       let u = localStorage.getItem("username");
-      if (u != null||id == 0) {
+      if (u != null || id == 0) {
         this.title = title;
         that.$router.push(this.navTitle[id].englishTitle);
       } else {
@@ -162,7 +164,7 @@ export default {
           userName: userName,
           userPassword: userPassword
         };
-        this.axios
+        that.axios
           .get("http://localhost:8888/login", {
             params: data
           })

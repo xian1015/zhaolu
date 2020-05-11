@@ -1,8 +1,9 @@
 .bookImpBox{
     width: 600px;
     height: 500px;
-    margin: 50px auto;
-    background-color: pink;
+    margin: 10px auto;
+    background-color: rgb(238, 241, 246);
+    border: 1px solid #eee;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

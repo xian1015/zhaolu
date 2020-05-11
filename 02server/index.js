@@ -26,6 +26,9 @@ let port = 8888;
 let loginControllers = require("./controllers/LoginController");
 app.get("/login", loginControllers.login);
 
+let adminLoginControllers = require("./controllers/AdminLoginController");
+app.get("/adminLogin", adminLoginControllers.adminLogin);
+
 let infoControllers = require("./controllers/InfoController");
 app.get("/getInfo", infoControllers.getInfo);
 
@@ -36,7 +39,7 @@ let bookImpControllers = require("./controllers/BookImpControllers");
 app.get("/bookImp", bookImpControllers.bookImp);
 
 let recommendController = require("./controllers/RecommendController");
-app.get("/bookImp", recommendController.getBook);
+app.get("/recom", recommendController.getBook);
 
 
 //4,进行监听

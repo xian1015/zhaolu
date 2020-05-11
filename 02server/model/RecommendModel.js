@@ -3,20 +3,56 @@ class RecommendModel extends SqlBase {
   constructor() {
     super();
   }
-  getBook(callback) {
-    let data = {};
-    //3,编写sql语句
-    let sql = "select * from book";
-    sql += " WHERE book_id=?";
+  getBook(req, res, callback) {
+    let that =this;
+    let needNum = parseInt(req.query.recomNum);
+    let bookNum;
+    let numList = [];
+    let bookList = [];
+    let ip = "http://localhost:";
+    let port = 8888;
 
-    this.connection.query(sql, [u], function (err, res) {
+    //查询最大最小值
+    let sql = "select count(*) as result from book";
+    let sql1 = "select * from book WHERE book_id=?"
+
+    this.connection.query(sql, function (err, res) {
       if (err) {
         console.log("[SELECT ERROR] - ", err.message);
         return;
       }
-      data = res[0];
-      console.log(data);
-      callback(data);
+      bookNum = res[0].result;
+      bookNum = parseInt(bookNum);
+      while (numList.length < needNum) {
+        let buftype = false;
+        let buf = 1000 + Math.floor(Math.random() * bookNum) + 1;
+        for (let i = 0; i < numList.length; i++) {
+          if (buf == numList[i]) {
+            buftype = true;
+          }
+        }
+        if(!buftype){
+          numList.push(buf);
+          console.log(buf);
+        }
+      }
+      console.log(numList);
+      for(let i=0;i<numList.length;i++){
+        that.connection.query(sql1,[numList[i]], function (err, res) {
+          if (err) {
+            console.log("[SELECT ERROR] - ", err.message);
+            return;
+          }
+          let data =  res[0];
+          data.book_cover = ip+port+"/bookcovers/"+data.book_id+".jpg"
+          console.log(data);
+          bookList.push(data);
+          if(i == numList.length-1){
+            console.log(bookList);
+            callback(bookList);
+          }
+        });
+      }
     });
   }
 }

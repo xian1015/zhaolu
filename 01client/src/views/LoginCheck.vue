@@ -10,20 +10,17 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, axios);
 axios.default.widthCredentials = true;
 
-import index from "./Index";
-import recharge from "./Recharge";
-import personalCenter from "./PersonalCenter";
-import regist from "./Regist";
 import app from "../App";
+import index from "./Index";
+import backStage from "./BackStage";
 
 export default {
-  name: "ZLHeader",
   data: function() {
     return {
-      count: 3
+      count: 3,
+      quanxian: this.$route.params.quanxian,
     };
   },
-  props: ["isTitle"],
 
   methods: {
     countdown: function() {
@@ -32,7 +29,11 @@ export default {
         that.count--;
       } else {
         clearInterval();
-        that.$router.push("./index");
+        if(that.quanxian == "backStage"){
+          that.$router.push("./backStage");
+        } else {
+          that.$router.push("./index");
+        }
       }
     }
   },

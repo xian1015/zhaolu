@@ -1,0 +1,31 @@
+.bsManage{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.el-container{
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    border: 1px solid #eee
+}
+.el-header {
+  background-color: #B3C0D1;
+  color: #333;
+  line-height: 60px;
+  text-align: right;
+  font-size: 12px
+}
+.el-aside {
+  color: #333;
+  width: 30%; 
+  background-color: rgb(238, 241, 246);
+}
+.contain2{
+    position: relative;
+    width: 70%;
+    height: 100%;
+}
+.is-active{
+    background-color: #ECF5FF
+}

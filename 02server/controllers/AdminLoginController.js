@@ -1,10 +1,10 @@
-let RecommendService = require("../services/RecommendService");
-module.exports.getBook= function (req, res) {
+let AdminLoginService = require("../services/AdminLoginService");
+module.exports.adminLogin= function (req, res) {
   //从用户请求里面取得里面的数据,用户请求在req
   //把解析出来的数据交给业务逻辑层
   //把业务逻辑层返回的数据发回给客户端
-  let recommendService = new RecommendService();
-  recommendService.getBook(req, res,function(ob) {
+  let adminLoginService = new AdminLoginService();
+  adminLoginService.adminLogin(req, res,function(ob) {
     res.json(ob);
   });
 

@@ -1,0 +1,97 @@
+/**
+* RandomRecom
+*/
+.randomRecom{
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+.in_rrcontentBox{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.in_rrcontent{
+    width: 1180px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.in_rrcontent_item{
+    width: 550px;
+    height: 280px;
+    box-shadow: 0px 0px 20px 0px rgba(29,29,31,0.13);
+    border-radius: 8px;
+    border: 1px solid rgba(222,222,224,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 20px;
+}
+.in_rr_img{
+    width: 132px;
+    height: 176px;
+    background-color: salmon;
+}
+.in_rrcontent_itemBox{
+    width: 500px;
+    height: 180px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto 20px;
+}
+.in_rr_text{
+    width: 350px;
+    height: 176px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.in_rr_textBox{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.in_rr_textIntro{
+    position: relative;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.bookName1{
+    font-size: 18px;
+    font-weight: 600;
+}
+.bookAuthor1{
+    font-size: 16px;
+}
+.bookIntroTitle{
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height:14px; 
+}
+.bookIntro1{
+    font: 14px;
+    color: silver;
+}
+.in_rr_type{
+    width: 500px;
+    height: 30px;
+}

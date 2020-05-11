@@ -115,7 +115,7 @@
 /**
 * RandomRecom
 */
-.in_todayIntro{
+.in_randomRecom{
     height: 420px;
     display: flex;
     flex-direction: column;
