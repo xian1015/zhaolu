@@ -19,8 +19,6 @@ class LoginModel extends SqlBase {
       if (res.length > 0) {
           data = { statusCode: 200, msg: '登录成功' };
       } else data = { statusCode: 0, msg: '用户名或密码不正确' };
-      console.log(data);
-      console.log(res[0]);
       let d = [data,res[0]];
       callback(d);
     });

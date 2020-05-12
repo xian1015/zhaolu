@@ -27,7 +27,9 @@
               </div>
             </div>
             <div class="rc_rechargeBoxRight">
-              <div class="rc_rechargeTips"></div>
+              <div class="rc_rechargeTips">
+                tips：理性充值哦。
+              </div>
             </div>
           </div>
           <div class="rc_rechargeButton">

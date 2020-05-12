@@ -3,89 +3,76 @@
     <zlHeader isTitle="个人中心"></zlHeader>
     <div class="pc_infor wd1200">
       <div class="pc_lanBox"></div>
+
       <div class="pc_inforbox">
-        <div class="pc_infor_item1">
-          <div class="pc_info_titleBox">
-            <span class="pc_infor_titlefont">id</span>
-            <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
-          </div>
-          <div class="pc_info_contentBox">{{userInfo.user_id}}</div>
-        </div>
-        <div class="pc_infor_item1">
-          <div class="pc_info_titleBox">
-            <span class="pc_infor_titlefont">用户名</span>
-            <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
-          </div>
-          <div class="pc_info_contentBox">{{userInfo.user_name}}</div>
+        <div class="pc_titleBox">
+          <p class="pc_titleContent">用户信息</p>
         </div>
         <div class="pc_infor_item1">
           <div class="pc_infor_item2">
-            <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">邮箱</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">ID:&nbsp;{{userInfo.user_id}}</div>
+              <div class="pc_mask"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_email}}</div>
           </div>
           <div class="pc_infor_item2">
-            <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">电话</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">用户名:&nbsp;{{userInfo.user_name}}</div>
+              <div class="pc_mask"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_tele}}</div>
           </div>
         </div>
         <div class="pc_infor_item1">
           <div class="pc_infor_item2">
-            <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">性别</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">邮箱:&nbsp;{{userInfo.user_email}}</div>
+              <div class="pc_mask"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_sex}}</div>
           </div>
           <div class="pc_infor_item2">
-            <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">年龄</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">电话:&nbsp;{{userInfo.user_tele}}</div>
+              <div class="pc_mask"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_age}}</div>
           </div>
         </div>
         <div class="pc_infor_item1">
-          <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">余额</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+          <div class="pc_infor_item2">
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">性别:&nbsp;{{userInfo.user_sex}}</div>
+              <div class="pc_mask"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_score}}</div>
+          </div>
+          <div class="pc_infor_item2">
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">年龄:&nbsp;{{userInfo.user_age}}</div>
+              <div class="pc_mask"></div>
+            </div>
+          </div>
         </div>
         <div class="pc_infor_item1">
-          <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">已购数量</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+          <div class="pc_infor_item2">
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">余额:&nbsp;{{userInfo.user_score}}</div>
+              <div class="pc_mask"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_buyNum}}</div>
+          </div>
+          <div class="pc_infor_item2">
+            <div class="pc_item_bc">
+              <div class="pc_info_contentBox">已购数量:&nbsp;{{userInfo.user_buyNum}}</div>
+              <div class="pc_mask"></div>
+            </div>
+          </div>
         </div>
         <div class="pc_infor_item3">
-          <div class="pc_info_titleBox">
-              <span class="pc_infor_titlefont">已购书籍</span>
-              <img class="pc_bg1" src="../assets/img/pc/bg1.png" alt />
+          <div class="pc_item_bc2">
+              <div class="pc_info_contentBox2">已购书籍:&nbsp;{{userInfo.user_buybook_id}}</div>
+              <div class="pc_mask2"></div>
             </div>
-            <div class="pc_info_contentBox">{{userInfo.user_buybook_id}}</div>
         </div>
       </div>
-      <div class="in_hotRank">
-        <div class="in_hotRankBox">
-          <div class="in_hr_title">
-            <span class="in_hr_text">热门榜</span>
-          </div>
-          <div class="in_hr_contentBox">
-            <ul class="in_hr_content">
-              <li v-for="item in hotRank" v-bind:key="item.id" class="ell1">
-                <a href="item.url">{{item.id+1}}.{{item.name}}&nbsp;作者：{{item.author}}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+
+      <hotRank typeID="undefined"></hotRank>
     </div>
   </div>
 </template>
@@ -101,35 +88,11 @@ import personalCenter from "./PersonalCenter";
 import regist from "./Regist";
 import app from "../App";
 import zlHeader from "./ZLHeader";
+import hotRank from "./HotRank";
 
 export default {
   data: function() {
     return {
-      searchInput: "",
-      userInput: "",
-      passInput: "",
-      img: [],
-      imgUrl: [],
-      navTitle: [
-        { id: 0, title: "首页", englishTitle: "./index" },
-        { id: 1, title: "充值", englishTitle: "./recharge" },
-        { id: 2, title: "个人中心", englishTitle: "./personalCenter" }
-      ],
-      isTitle: "个人中心",
-      islogin: false,
-      isLoginClick: false,
-      hotRank: [
-        { id: 0, name: "撒野", author: "p", url: "#" },
-        { id: 1, name: "某某", author: "p", url: "#" },
-        { id: 2, name: "地球上线", author: "莫晨欢", url: "#" },
-        { id: 3, name: "撒野", author: "p", url: "#" },
-        { id: 4, name: "某某", author: "p", url: "#" },
-        { id: 5, name: "地球上线", author: "莫晨欢", url: "#" },
-        { id: 6, name: "撒野", author: "p", url: "#" },
-        { id: 7, name: "某某", author: "p", url: "#" },
-        { id: 8, name: "地球上线", author: "莫晨欢", url: "#" },
-        { id: 9, name: "高能二维码", author: "青色羽翼", url: "#" }
-      ],
       userInfo: {
         user_id: "",
         user_name: "",
@@ -191,7 +154,8 @@ export default {
     }
   },
   components: {
-    zlHeader
+    zlHeader,
+    hotRank
   },
   mounted() {
     let that = this;

@@ -32,6 +32,14 @@ app.get("/book", bookControllers.bookInfo);
 let hotRanKController = require("./controllers/HotRanKController");
 app.get("/hotrank", hotRanKController.getHT);
 
+let typeController = require("./controllers/TypeController");
+app.get("/type", typeController.getTypeList);
+
+let searchController = require("./controllers/SearchController");
+app.get("/search", searchController.getSearchRes);
+
+let bannerController = require("./controllers/BannerController");
+app.get("/banner", bannerController.getBanner);
 
 let adminLoginControllers = require("./controllers/AdminLoginController");
 app.get("/adminLogin", adminLoginControllers.adminLogin);

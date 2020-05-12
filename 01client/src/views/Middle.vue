@@ -23,9 +23,13 @@ export default {
 
   mounted() {
     let that = this;
-    let data = { id: that.$route.query.id };
-    console.log(data);
-    that.$router.push({path: "/book",query: {id:that.$route.query.id}});
+    if(that.$route.query.id){
+      let data = { id: that.$route.query.id };
+      that.$router.push({path: "/book",query: {id:that.$route.query.id}});
+    } else if(that.$route.query.searchInput){
+      let data = { id: that.$route.query.searchInput };
+      that.$router.push({path: "/searchList",query: {searchInput:that.$route.query.searchInput}});
+    }
   }
 };
 </script>

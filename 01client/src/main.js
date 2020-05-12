@@ -28,7 +28,10 @@ import hotRank from './views/HotRank.vue'
 import logincheck from './views/LoginCheck.vue'
 import middle from './views/Middle.vue'
 import type from './views/Type.vue'
+import searchList from './views/SearchList.vue'
 import bookImp from './views/BookImp.vue'
+import bookAlter from './views/BookAlter.vue'
+import bannerAlter from './views/bannerAlter.vue'
 import backStage from './views/BackStage.vue'
 import bsManage from './views/BSManage.vue'
 import store from './store/store.js'
@@ -65,16 +68,22 @@ const routes = [
   { path: '/type',name:'type', component: type, meta: { title: '朝露书城——愿你如朝如露，热切通透'},children:[
     { path: '/hotRank',name:'hotRank', component: hotRank},
   ]},
+  { path: '/searchList',name:'searchList', component: searchList, meta: { title: '搜索结果'},children:[
+  ]},
   { path: '/backStage',name:'backStage', component: backStage, meta: { title: '后台登录'},children:[
   ]},
   { path: '/bsManage',name:'bsManage', component: bsManage, meta: { title: '后台管理'},children:[
     { path: '/bookImp',name:'bookImp', component: bookImp},
+    { path: '/bookAlter',name:'bookAlter', component: bookAlter},
+    { path: '/bannerAlter',name:'bannerAlter', component: bannerAlter},
   ]},
 ]
 const router = new VueRouter({
   routes
 })
-
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+})
 new Vue({
   router,
   store,

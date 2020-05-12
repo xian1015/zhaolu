@@ -1,13 +1,13 @@
 <template>
-  <div class="type">
+  <div class="search">
     <zlHeader></zlHeader>
     <div class="t_TopBox wd1200">
       <div class="t_ListBox">
         <div class="t_titleBox">
-          <p class="t_titleContent">{{typeName}}小说</p>
+          <p class="t_titleContent">搜索"{{$route.query.searchInput}}"结果</p>
         </div>
-        <ul class="t_list" v-if="isTypeList">
-          <li v-for="item in typeListBox" v-bind:key="item.id" class="t_itemBox">
+        <ul class="t_list" v-if="isSearchList">
+          <li v-for="item in SearchListBox" v-bind:key="item.id" class="t_itemBox">
             <div class="t_bcMask"></div>
             <div class="t_itemBC">
               <router-link :to="{path:'/middle',query: {id: item.book_id}}">
@@ -30,12 +30,15 @@
             </div>
           </li>
         </ul>
+        <div v-if="!isSearchList" class="noRes">
+          <p>{{state}}</p>
+        </div>
         <div class="t_nextBox">
           <button class="next page" v-on:click="toNext">下一页</button>
           <button class="pre page" v-on:click="toPre">上一页</button>
         </div>
       </div>
-      <hotRank :typeID="$route.query.type"></hotRank>
+      <hotRank typeID="undefined"></hotRank>
     </div>
     <randomRecom recomNum="4"></randomRecom>
   </div>
@@ -54,16 +57,15 @@ import hotRank from "./HotRank";
 export default {
   data: function() {
     return {
-      type: "",
-      typeID: "",
-      typeName: "",
+      searchInput: "",
       bookInfo: {},
       bookId: {},
-      typeList: [],
-      typeListBox: [],
+      SearchList: [],
+      SearchListBox: [],
       count: 0,
       idcount: 0,
-      isTypeList: false
+      isSearchList: false,
+      state: ""
     };
   },
 
@@ -73,17 +75,17 @@ export default {
     },
     toNext: function() {
       let that = this;
-      if (that.idcount < that.typeList.length) {
-        that.isTypeList = false;
+      if (that.idcount < that.SearchList.length) {
+        that.isSearchList = false;
         let buf = that.idcount;
-        for (let i = 0; i < that.typeList.length - buf; i++) {
-          that.typeListBox[i] = that.typeList[that.idcount];
-          that.typeListBox[i].id = that.idcount + 1;
+        for (let i = 0; i < that.SearchList.length - buf; i++) {
+          that.SearchListBox[i] = that.SearchList[that.idcount];
+          that.SearchListBox[i].id = that.idcount + 1;
           that.idcount++;
         }
-        that.typeListBox.length = that.idcount - buf;
+        that.SearchListBox.length = that.idcount - buf;
         that.count++;
-        that.isTypeList = true;
+        that.isSearchList = true;
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       } else {
@@ -92,16 +94,16 @@ export default {
     },
     toPre: function() {
       let that = this;
-      if (that.typeListBox[0].id != 1 ) {
-        that.isTypeList = false;
-        let buf = that.typeListBox[0].id;
+      if (that.SearchListBox[0].id != 1) {
+        that.isSearchList = false;
+        let buf = that.SearchListBox[0].id;
         for (let i = 7; i >= 0; i--) {
-          that.typeListBox[i] = that.typeList[buf-2];
+          that.SearchListBox[i] = that.SearchList[buf - 2];
           that.idcount--;
           buf--;
         }
         that.count--;
-        that.isTypeList = true;
+        that.isSearchList = true;
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       } else {
@@ -116,41 +118,38 @@ export default {
   },
   created() {
     let that = this;
-    this.typeID = this.$route.query.type;
-    let data = { typeID: this.typeID };
+    this.searchInput = this.$route.query.searchInput;
+    let data = { searchInput: this.searchInput };
+    console.log(data);
     this.axios
-      .get("http://localhost:8888/type", {
+      .get("http://localhost:8888/search", {
         params: data
       })
       .then(res => {
-        that.typeList = res.data;
+        let countBuf;
+        let buf = res.data[0];
+        that.SearchList = res.data[1];
         console.log(res.data);
-        for (let i = 0; i < 8; i++) {
-          that.typeListBox[i] = that.typeList[i];
-          that.typeListBox[i].id = that.idcount + 1;
-          that.idcount++;
+        console.log(buf);
+        console.log(that.SearchList);
+        if (buf.statusCode == 200) {
+            if(that.SearchList>8){
+                countBuf = 8;
+            } else {
+                countBuf = that.SearchList.length
+            }
+          for (let i = 0; i < countBuf; i++) {
+            that.SearchListBox[i] = that.SearchList[i];
+            that.SearchListBox[i].id = that.idcount + 1;
+            that.idcount++;
+          }
+          that.isSearchList = true;
+          console.log(that.SearchListBox);
+        } else {
+          that.isSearchList = false;
+          that.state = buf.msg;
         }
-        that.isTypeList = true;
-        console.log(that.typeListBox);
       });
-    if (
-      that.typeID == 0 ||
-      that.typeID == 1 ||
-      that.typeID == 2 ||
-      that.typeID == 3
-    ) {
-      if (that.typeID == 0) {
-        that.typeName = "言情";
-      } else if (that.typeID == 1) {
-        that.typeName = "悬疑";
-      } else if (that.typeID == 2) {
-        that.typeName = "科幻";
-      } else if (that.typeID == 3) {
-        that.typeName = "奇幻";
-      }
-    } else {
-      that.typeName = "综合";
-    }
   },
   mounted() {}
 };

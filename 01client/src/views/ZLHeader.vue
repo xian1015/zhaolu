@@ -123,7 +123,10 @@ export default {
       isLoginEmpty: false,
       isLoginTypeWrong: false,
       isLoginWrong: false,
-      test: []
+      test: [],
+      searchList:[],
+      searchListBox:[],
+      searchID:[],
     };
   },
   props: ["isTitle"],
@@ -198,7 +201,7 @@ export default {
       window.location.reload();
     },
     search:function(){
-      console.log(this.searchInput);
+      this.$router.push({path: "/middle",query: {searchInput: this.searchInput}});
     }
   },
 

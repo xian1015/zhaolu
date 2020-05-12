@@ -1,0 +1,119 @@
+.ba_searchBox{
+    position: relative;
+    margin-bottom: 12px;
+    width: 30%;
+}
+.el-input__inner{
+    padding-right: 40px;
+}
+.searchButton{
+    position: absolute;
+    width: 50px;
+    height: 25px;
+    margin-top: -12px;
+    margin-left: 10px;
+    top:50%;
+    text-align: center;
+    line-height: 25px;
+    background-color: #B3C0D1;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.b_itemBox,
+.b_itemBox2{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    line-height: 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.b_itemBox2{
+    font-weight: 600;
+}
+.b_bookName1{
+    width: 150px;
+}
+.b_bookAuthor1{
+    width: 120px;
+}
+.b_bookIntro1{
+    width: 320px;
+}
+.b_content {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin:0 10px;
+}
+.b_alter{
+    width: auto;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.b_alter1{
+    margin:0 20px 0 80px;
+}
+.b_alter2{
+    margin:0 20px 0 10px;
+}
+.b_alter1,
+.b_alter2{
+    color: #9AA5B4;
+    width: 40px;
+    text-decoration: underline;
+}
+.b_alter1:hover,
+.b_alter2:hover,
+.b_bAdd:hover{
+    color: #B3C0D1;
+}
+.b_itemBox{
+    border-bottom: 1px solid #B3C0D1;
+}
+.b_itemBox2{
+    border-bottom: 2px solid #B3C0D1;}
+.b_bAdd{
+    position: absolute;
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: nowrap;
+    margin:0 10px;
+    right: 0;
+    text-decoration: underline;
+    color: #9AA5B4;
+}
+.b_content2 {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: nowrap;
+    margin:0 10px;
+}
+.b_bookimg{
+    width: 120px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: nowrap;
+}

@@ -10,16 +10,14 @@
             <el-menu-item index="1-1" v-on:click="bookAdd">图书添加</el-menu-item>
             <el-menu-item index="1-2" v-on:click="bookAlter">图书修改</el-menu-item>
           </el-submenu>
-          <el-menu-item index="2">
-            <template slot="title">
-              <i class="el-icon-menu"  v-on:click="bannerAlter"></i>公告管理
-            </template>
+          <el-menu-item index="2" v-on:click="bannerAlter">
+            <i class="el-icon-menu"></i>公告管理
           </el-menu-item>
         </el-menu>
       </el-aside>
       <el-container class="contain2">
         <el-header>
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
+          <i class="el-icon-setting" style="margin-right: 15px"></i>
           <span>admin</span>
         </el-header>
 
@@ -27,16 +25,10 @@
           <bookImp></bookImp>
         </el-main>
         <el-main v-if="isbookAlter">
-          <el-table :data="tableData">
-            
-          </el-table>
+          <bookAlter></bookAlter>
         </el-main>
         <el-main v-if="isbannerAlter">
-          <el-table :data="tableData">
-            <el-table-column prop="date" label="日期" width="140"></el-table-column>
-            <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-            <el-table-column prop="address" label="地址"></el-table-column>
-          </el-table>
+          <bannerAlter></bannerAlter>
         </el-main>
       </el-container>
     </el-container>
@@ -50,41 +42,44 @@ Vue.use(VueAxios, axios);
 
 import app from "../App";
 import bookImp from "./BookImp";
+import bookAlter from "./BookAlter";
+import bannerAlter from "./bannerAlter";
 
 export default {
   data: function() {
     return {
-      quanxian: this.$route.params.quanxian,
+      quanxian: "bs",
       item: {},
       isbookAdd: true,
       isbookAlter: false,
-      isbannerAlter: false,
+      isbannerAlter: false
     };
   },
-  components:{
-    bookImp
+  components: {
+    bookImp,
+    bookAlter,
+    bannerAlter,
   },
   methods: {
-    bookAdd:function(){
+    bookAdd: function() {
       this.isbookAdd = true;
       this.isbookAlter = false;
       this.isbannerAlter = false;
     },
-    bookAlter:function(){
+    bookAlter: function() {
       this.isbookAdd = false;
       this.isbookAlter = true;
       this.isbannerAlter = false;
     },
-    bannerAlter:function(){
+    bannerAlter: function() {
       this.isbookAdd = false;
       this.isbookAlter = false;
       this.isbannerAlter = true;
-    },
+    }
   },
   mounted() {
     let that = this;
     let a = localStorage.getItem("adminname");
-    console.log(a);
     if (that.quanxian != "bs") {
       that.$router.push({
         name: "logincheck",

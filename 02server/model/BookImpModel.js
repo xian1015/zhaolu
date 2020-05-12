@@ -7,7 +7,6 @@ class BookImpModel extends SqlBase {
     let that = this;
     let data = {codes:0};
     let bookinfo = req.query;
-    console.log(bookinfo);
     //3,编写sql语句
     let sql = "INSERT INTO book(book_name,author,bigtype_name,book_price,introduction) VALUES (";
     sql += "'" + req.query.bookName+ "'," + "'" + req.query.author + "'," + "'" + req.query.type + "'," + "'" + req.query.price + "'," + "'" + req.query.introduction +  "')";
