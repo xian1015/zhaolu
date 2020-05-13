@@ -215,17 +215,7 @@
     font-size: 20px;
 }
 
-.lb_adimBox{
-    position: relative;
-    width: 350px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    line-height: 40px;
-}
-.lb_input{
-    width: 280px;
-}
+
 
 .lb_login{
     position: relative;

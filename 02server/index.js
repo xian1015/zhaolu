@@ -29,6 +29,9 @@ app.get("/login", loginControllers.login);
 let bookControllers = require("./controllers/BookController");
 app.get("/book", bookControllers.bookInfo);
 
+let buyController = require("./controllers/BuyController");
+app.get("/buy", buyController.buy);
+
 let hotRanKController = require("./controllers/HotRanKController");
 app.get("/hotrank", hotRanKController.getHT);
 

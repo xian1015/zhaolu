@@ -5,13 +5,17 @@
       <div class="book_inforBox">
         <div class="bookLeft">
           <img class="bookCover" :src="bookInfo.book_cover" alt />
-          <button class="bookPay">购&nbsp;&nbsp;&nbsp;买</button>
+          <button class="bookPay" v-on:click="buy" v-if='!isBuy'>购&nbsp;&nbsp;&nbsp;买</button>
+          <button class="bookPay" v-if='isBuy'>已&nbsp;&nbsp;购&nbsp;&nbsp;买</button>
         </div>
         <div class="bookInfo">
           <div class="b_text">
             <div class="b_textBox">
               <p class="b_bookName1">{{bookInfo.book_name}}</p>
-              <p class="b_bookAuthor1">作者：{{bookInfo.author}}</p>
+              <p class="b_bookAuthor1">
+                <span>作者：{{bookInfo.author}}</span>
+                <span class="price">价格：{{bookInfo.book_price}}&nbsp;积分</span>
+              </p>
             </div>
             <div class="b_textIntro">
               <p class="b_bookIntroTitle">简介：</p>
@@ -23,6 +27,30 @@
       <hotRank typeID="undefined"></hotRank>
     </div>
     <randomRecom recomNum="4"></randomRecom>
+    <div class="b_buyBox" v-if="wantBuy">
+      <div class="buyMark"></div>
+      <div class="buyBox" v-if="!isBuy">
+        <div class="b_buy">
+          <div>
+            <span>是否购买？购买将扣除1积分。</span>
+          </div>
+        </div>
+        <div class="b_buttonBox">
+          <div class="buy_button" v-on:click="yes">确&nbsp;&nbsp;认</div>
+          <div class="buy_button" v-on:click="exit">取&nbsp;&nbsp;消</div>
+        </div>
+      </div>
+      <div class="buyBox" v-if="isBuy">
+        <div class="b_buy">
+          <div>
+            <span>购买成功</span>
+          </div>
+        </div>
+        <div class="b_buttonBox">
+          <div class="buy_button" v-on:click="exit">确&nbsp;&nbsp;认</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -40,19 +68,44 @@ export default {
   data: function() {
     return {
       bookInfo: {},
-      bookId:{}
+      bookId: {},
+      isBuy: false,
+      wantBuy: false,
+      state: ""
     };
   },
 
   methods: {
     selected: function(title) {
       this.isTitle = title;
+    },
+    buy: function() {
+      this.wantBuy = true;
+    },
+    yes: function() {
+      let that = this;
+      let u = localStorage.getItem("username");
+      let data = { bookID: this.bookInfo.book_id, userName: u };
+      this.axios
+        .get("http://localhost:8888/buy", {
+          params: data
+        })
+        .then(res => {
+          that.state = res.data;
+          console.log(res.data);
+          if (that.state.statusCode === 200){
+            that.isBuy = true;
+          }
+        });
+    },
+    exit: function() {
+      this.wantBuy = false;
     }
   },
   components: {
     zlHeader,
     randomRecom,
-    hotRank,
+    hotRank
   },
   mounted() {
     let that = this;
@@ -66,8 +119,7 @@ export default {
         that.bookInfo = res.data;
         console.log(that.bookInfo);
       });
-  },
-  
+  }
 };
 </script>
 <style scoped>

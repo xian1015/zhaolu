@@ -7,7 +7,6 @@ class BookModel extends SqlBase {
     let ip = "http://localhost:";
     let port = 8888;
     let u = req.query.id;
-    console.log(u);
     let data = {};
     //3,编写sql语句
     let sql = "select * from book";
@@ -20,7 +19,6 @@ class BookModel extends SqlBase {
       }
       data = res[0];
       data.book_cover = ip+port+"/bookcovers/"+data.book_id+".jpg"
-      console.log(res[0]);
       callback(data);
     });
     // callback(data);
