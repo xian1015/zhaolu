@@ -62,6 +62,12 @@ app.get("/bookAlter", bookAlterController.bookAlter);
 let bannerImpControllers = require("./controllers/BannerImpControllers");
 app.get("/bannerImp", bannerImpControllers.bannerImp);
 
+let bannerAlterController = require("./controllers/BannerAlterController");
+app.get("/bannerAlter", bannerAlterController.bannerAlter);
+
+let bannerDeleteController = require("./controllers/BannerDeleteController");
+app.get("/bannerDelete", bannerDeleteController.bannerDelete);
+
 let recommendController = require("./controllers/RecommendController");
 app.get("/recom", recommendController.getBook);
 

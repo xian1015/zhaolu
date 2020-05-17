@@ -6,7 +6,7 @@
         <span class="b_bookName1 b_content">banner图</span>
         <span class="b_bookIntro1 b_content2 ell1">简介</span>
         <span class="b_bookAuthor1 b_content2">链接</span>
-        <span class="b_bAdd" v-on:click="isAdd">添加新banner活动</span>
+        <span class="b_bAdd" v-on:click="add">添加新banner活动</span>
       </li>
       <li v-for="item in SearchListBox" v-bind:key="item.id" class="b_itemBox">
         <div class="b_bookName1 b_content">
@@ -15,22 +15,41 @@
         <span class="b_bookAuthor1 b_content2">{{item.banner_intro}}</span>
         <span class="ell1 b_bookIntro1 b_content2">{{item.banner_link}}</span>
         <div class="b_alter">
-          <span class="b_content b_alter1" v-on:click="b_Alter(item.id)">修改</span>
-          <span class="b_content b_alter2" v-on:click="b_delete(item.id)">删除</span>
+          <span class="b_content b_alter1" v-on:click="b_alter(item.id)">修改</span>
+          <span class="b_content b_alter2" v-on:click="b_delete(item.banner_id)">删除</span>
         </div>
       </li>
     </ul>
+    <div class="baa_Box" v-if="isAdd">
+      <div class="baa_mask"></div>
+      <div class="bannerAlterBox">
+        <div class="baa_exit el-icon-circle-close" v-on:click="exitAlterBox"></div>
+        <div class="baa_itemBox">
+          <span class="baa_title">banner简介</span>
+          <el-input v-model="bannerIntro1" placeholder="请输入内容"></el-input>
+        </div>
+        <div class="baa_itemBox">
+          <span class="baa_title">banner链接</span>
+          <el-input v-model="bannerLink1" placeholder="请输入内容"></el-input>
+        </div>
+        <div class="buttonBox">
+          <button class="baa_Sub" v-on:click="bannerAdd">
+            <span>提&nbsp;交</span>
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="baa_Box" v-if="isAlter">
       <div class="baa_mask"></div>
       <div class="bannerAlterBox">
         <div class="baa_exit el-icon-circle-close" v-on:click="exitAlterBox"></div>
         <div class="baa_itemBox">
           <span class="baa_title">banner简介</span>
-          <el-input v-model="banner_intro" placeholder="请输入内容"></el-input>
+          <el-input v-model="bannerIntro2" placeholder="请输入内容"></el-input>
         </div>
         <div class="baa_itemBox">
           <span class="baa_title">banner链接</span>
-          <el-input v-model="banner_link" placeholder="请输入内容"></el-input>
+          <el-input v-model="bannerLink2" placeholder="请输入内容"></el-input>
         </div>
         <div class="buttonBox">
           <button class="baa_Sub" v-on:click="bannerAlter">
@@ -58,8 +77,10 @@ export default {
   data: function() {
     return {
       isSearchList: false,
-      banner_intro: "",
-      banner_link:"",
+      bannerIntro1: "",
+      bannerLink1: "",
+      bannerIntro2: "",
+      bannerLink2: "",
       bookInfo: {},
       bookId: {},
       SearchList: [],
@@ -68,8 +89,9 @@ export default {
       idcount: 0,
       isSearchList: false,
       state: "",
+      isAdd: false,
       isAlter: false,
-      buf:{},
+      buf: {}
     };
   },
 
@@ -115,33 +137,21 @@ export default {
       this.isAlter = false;
       this.isSearchList = true;
     },
-    isAdd: function() {
+    add: function() {
       let that = this;
-      this.isAlter = true;
+      this.isAdd = true;
     },
-    isAlter: function(id) {
-      let that = this;
-      this.isAlter = true;
-      this.buf = this.SearchListBox[id - 1];
-      this.banner_link = this.buf.banner_link;
-      this.banner_intro = this.buf.banner_intro;
-    },
-    b_delete: function(id) {
-      let that = this;
-      this.SearchListBox.splice(id - 1, 1);
-    },
-    bannerAlter: function() {
+    bannerAdd: function() {
       let that = this;
       let id = this.buf.banner_id;
-      let banner_link = that.banner_link;
-      let banner_intro = that.banner_intro;
-      that.bookinfo = {
+      let banner_link = that.bannerLink1;
+      let banner_intro = that.bannerIntro;
+      that.bannerinfo = {
         id,
         banner_link,
-        banner_intro,
+        banner_intro
       };
-      let data = that.bookinfo;
-      console.log(data);
+      let data = that.bannerinfo;
       this.axios
         .get("http://localhost:8888/bannerImp", {
           params: data
@@ -152,10 +162,70 @@ export default {
             alert("添加失败！");
           } else if (res.data.statusCode == 200) {
             alert("添加成功！");
-            this.buf.banner_id = that.SearchListBox[that.SearchListBox.length-1].banner_id+1;
-            this.buf.banner_link = that.banner_link;
-            this.buf.banner_intro = that.banner_intro;
-            that.SearchListBox.push(this.buf)
+            this.buf.banner_id =
+              that.SearchListBox[that.SearchListBox.length - 1].banner_id + 1;
+            this.buf.banner_link = that.bannerLink1;
+            this.buf.banner_intro = that.bannerIntr1o;
+            that.SearchListBox.push(this.buf);
+            that.isAdd = false;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    b_alter: function(id) {
+      let that = this;
+      this.isAlter = true;
+      this.buf = this.SearchListBox[id - 1];
+      this.bannerLink2 = this.buf.banner_link;
+      this.bannerIntro = this.buf.banner_intro;
+    },
+    b_delete: function(id) {
+      let that = this;
+      let data = {
+        id:id
+      }
+      this.axios
+        .get("http://localhost:8888/bannerDelete", {
+          params: data
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.statusCode == 0) {
+            alert("删除失败！");
+          } else if (res.data.statusCode == 200) {
+            alert("删除成功！");
+            this.SearchListBox.splice(id - 1, 1);
+            console.log(that.SearchListBox);
+            that.isAlter = false;
+          }
+        })
+    },
+    bannerAlter: function() {
+      let that = this;
+      let id = this.buf.banner_id;
+      let banner_link = that.bannerLink2;
+      let banner_intro = that.bannerIntro2;
+      that.bannerinfo = {
+        id,
+        banner_link,
+        banner_intro
+      };
+      let data = that.bannerinfo;
+      this.axios
+        .get("http://localhost:8888/bannerAlter", {
+          params: data
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.statusCode == 0) {
+            alert("修改失败！");
+          } else if (res.data.statusCode == 200) {
+            alert("修改成功！");
+            that.SearchListBox[that.buf.id - 1].banner_link=that.bannerinfo.banner_link;
+            that.SearchListBox[that.buf.id - 1].banner_intro=that.bannerinfo.banner_intro;
+            console.log(that.SearchListBox);
             that.isAlter = false;
           }
         })
