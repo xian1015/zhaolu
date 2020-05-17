@@ -5,8 +5,8 @@
       <div class="book_inforBox">
         <div class="bookLeft">
           <img class="bookCover" :src="bookInfo.book_cover" alt />
-          <button class="bookPay" v-on:click="buy" v-if='!isBuy'>购&nbsp;&nbsp;&nbsp;买</button>
-          <button class="bookPay" v-if='isBuy'>已&nbsp;&nbsp;购&nbsp;&nbsp;买</button>
+          <button class="bookPay" v-on:click="buy" v-if="!isBuy">购&nbsp;&nbsp;&nbsp;买</button>
+          <button class="bookPay" v-if="isBuy">已&nbsp;&nbsp;购&nbsp;&nbsp;买</button>
         </div>
         <div class="bookInfo">
           <div class="b_text">
@@ -92,15 +92,19 @@ export default {
         })
         .then(res => {
           that.state = res.data;
-          console.log(res.data);
-          if (that.state.statusCode === 200){
+          if (that.state.statusCode === 200) {
             that.isBuy = true;
+          } else if(that.state.statusCode === 1){
+            that.wantBuy = false;
+            that.isBuy = false;
+            alert("积分为0，购买失败");
           }
+          window.location.href = "https://www.huiyitxt.com/job.php?action=download&aid=463384&mt=5dc3249e2419f47dc28bab55853b2d05t"
         });
     },
     exit: function() {
       this.wantBuy = false;
-    }
+    },
   },
   components: {
     zlHeader,
@@ -110,14 +114,12 @@ export default {
   mounted() {
     let that = this;
     let data = { id: that.$route.query.id };
-    console.log(data);
     this.axios
       .get("http://localhost:8888/book", {
         params: data
       })
       .then(res => {
         that.bookInfo = res.data;
-        console.log(that.bookInfo);
       });
   }
 };

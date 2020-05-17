@@ -60,7 +60,6 @@ export default {
       ]
     };
   },
-
   methods: {
     selected: function(title) {
       this.isTitle = title;

@@ -56,6 +56,12 @@ app.get("/regist", registControllers.regist);
 let bookImpControllers = require("./controllers/BookImpControllers");
 app.get("/bookImp", bookImpControllers.bookImp);
 
+let bookAlterController = require("./controllers/BookAlterController");
+app.get("/bookAlter", bookAlterController.bookAlter);
+
+let bannerImpControllers = require("./controllers/BannerImpControllers");
+app.get("/bannerImp", bannerImpControllers.bannerImp);
+
 let recommendController = require("./controllers/RecommendController");
 app.get("/recom", recommendController.getBook);
 

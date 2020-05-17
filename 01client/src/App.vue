@@ -8,7 +8,15 @@
 export default {
   name: "App",
   mounted() {
-    this.$router.push("./index");
+    this.$router.push("./bsManage");
+  },
+   methods: {
+    reload:function() {
+      this.isRouteAlive = false;
+      this.$nextTick (() => {
+        this.isRouteAlive = true;
+      })
+    }
   }
 };
 </script>

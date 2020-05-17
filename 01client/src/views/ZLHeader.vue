@@ -158,9 +158,13 @@ export default {
         userPassword.length !== 0 &&
         (!reg.test(userName) || !reg.test(userPassword))
       ) {
+        that.isLoginEmpty = false;
+        that.isLoginWrong = false;
         that.isLoginTypeWrong = true;
       } else if (userName.length === 0 || userPassword.length === 0) {
         that.isLoginEmpty = true;
+        that.isLoginTypeWrong = false;
+        that.isLoginWrong = false;
       } else {
         that.isLoginTypeWrong = false;
         that.isLoginEmpty = false;

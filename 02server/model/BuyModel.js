@@ -24,11 +24,18 @@ class BuyModel extends SqlBase {
       that.connection.query(sql1, [u], function (err, res) {
         if (err) {
           console.log("[UPDATE ERROR] - ", err.message);
-          return;
+          let reg = /user_score/
+          if(reg.test(err.message)){
+            data = { statusCode: 1, msg: '积分为0' };
+            callback(data);
+            return;
+          } else {
+            return;
+          }
         }
         console.log(res);
         if (res.affectedRows!=0) {
-            data = { statusCode: 200, msg: '登录成功' };
+            data = { statusCode: 200, msg: '购买成功' };
         } else data = { statusCode: 0, msg: '用户名或密码不正确' };
         callback(data);
       });

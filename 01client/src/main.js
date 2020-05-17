@@ -10,6 +10,7 @@ Vue.use(VueAxios, axios,Vuex)
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'animate.css'
+import '../src/store/download'
 
 Vue.use(VueRouter)
 //网页title组件

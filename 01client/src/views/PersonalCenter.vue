@@ -3,7 +3,6 @@
     <zlHeader isTitle="个人中心"></zlHeader>
     <div class="pc_infor wd1200">
       <div class="pc_lanBox"></div>
-
       <div class="pc_inforbox">
         <div class="pc_titleBox">
           <p class="pc_titleContent">用户信息</p>
@@ -71,7 +70,6 @@
             </div>
         </div>
       </div>
-
       <hotRank typeID="undefined"></hotRank>
     </div>
   </div>
